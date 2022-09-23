@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../models');
+// const { History } = require('../models');
 
 router.get('/', async (req, res) => {
   try {
