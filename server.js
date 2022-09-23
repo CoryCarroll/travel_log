@@ -31,7 +31,7 @@ sequelize.sync({ force: false }).then(() => {
 const options = {
   'method': 'GET',
   'hostname': 'api.roadgoat.com',
-  'port': 80,
+  'port': 443,
   'path': '/api/v2/destinations/auto_complete?q=barcelona',
   'headers': {
     'Authorization': `Basic ${auth_key}`
