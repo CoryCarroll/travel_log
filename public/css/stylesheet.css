@@ -1,0 +1,32 @@
+.nav {
+    background-color: rgb(31, 28, 28);
+    /* color: rgb(218, 80, 7); */
+    color: white; 
+    padding: 30px;   
+    display: flex; 
+}
+
+span {
+    color: rgb(218, 80, 7);
+}
+
+.button {
+    background-color: rgb(218, 80, 7);
+    color: white;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 10px;
+}
+
+.borderEdge {
+    background-color: rgb(218, 80, 7);
+    height: 8px;
+}
+
+.img {
+    display: flex;
+    justify-content: center;
+}
