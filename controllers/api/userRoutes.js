@@ -1,24 +1,22 @@
 const router = require("express").Router();
 const { User } = require("../../models");
+const bcrypt = require('bcrypt');
 
 // CREATE new user
 router.post("/", async (req, res) => {
   try {
-    const dbUserData = await User.create({
-      username: req.body.username,
-      password: req.body.password,
-    });
+    const dbUserData = await User.create(req.body);
 
     req.session.save(() => {
       req.session.loggedIn = true;
-      req.session.username = dbUserData.username;
-      req.session.userId = dbUserData.id;
+      req.session.name = dbUserData.name;
+      req.session.user_id = dbUserData.id;
 
       res.status(200).json(dbUserData);
     });
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    res.status(400).json(err.message);
   }
 });
 
@@ -43,8 +41,8 @@ router.post("/login", async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
-      req.session.username = user.username;
-      req.session.userId = user.id;
+      req.session.name = user.name;
+      req.session.user_id = user.id;
       console.log(req.session.cookie);
 
       res.status(200).json({ user, message: "You are now logged in!" });

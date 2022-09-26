@@ -15,6 +15,7 @@
     "follow-redirects": "^1.15.2",
     "handlebars": "^4.7.7",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.23.0"
+    "sequelize": "^6.23.0",
+    "update": "^0.7.4"
   }
 }
