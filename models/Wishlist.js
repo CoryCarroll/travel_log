@@ -37,7 +37,11 @@ Wishlist.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
+<<<<<<< HEAD
         modelName: 'Wishlist',
+=======
+        modelName: 'user',
+>>>>>>> fa4e175d4a0f7cdea221946917e64e1f84747c02
         }
 );
 
