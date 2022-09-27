@@ -1,52 +1,52 @@
 const router = require("express").Router();
-const {Post} = require("../../models");
-const withAuth = require("../../utils/auth");
+const {History} = require("../../models");
+// const withAuth = require("../../utils/auth");
 
-router.get("/", withAuth, async (req, res) => {
+router.get("/", async (req, res) => {
     try {
-      const posts = await Post.findAll();
-      res.status(200).json(posts);
+      const history = await History.findAll();
+      res.status(200).json(history);
     } catch (error) {
       res.status(500).json(error);
       console.log(error);
     }
   });
 
-  router.post('/', withAuth, async (req, res) => {
+  router.post('/', async (req, res) => {
     try {
-      const newPost = await Post.create({
+      const newHistory = await History.create({
         ...req.body,
         destination: req.session.destination,
       });
   
-      res.status(200).json(newPost);
+      res.status(200).json(newHistory);
     } catch (err) {
       res.status(400).json(err);
     }
   });
 
-  router.put('/:destination', withAuth, async (req, res) => {
+  router.put('/:destination', async (req, res) => {
     try {
-      const updatePost = await Post.update(req.body, {
+      const updateHistory = await History.update(req.body, {
         where: {
           destination: req.params.destination,
         },
       });
-      res.status(200).json(updatePost);
+      res.status(200).json(updateHistory);
     } catch (err) {
       res.status(500).json(err);
     }
   });
   
-  router.delete('/:destination', withAuth, async (req, res) => {
+  router.delete('/:destination', async (req, res) => {
     try {
-      const postData = await Post.destroy({
+      const historyData = await History.destroy({
         where: {
           id: req.params.id,
           destination: req.session.destination,
         },
-      });
-      res.status(200).json(postData);
+      });  
+      res.status(200).json(historyData);
     } catch (err) {
       res.status(500).json(err);
     }
