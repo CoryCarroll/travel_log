@@ -31,6 +31,13 @@ History.init(
             type: DataTypes.DECIMAL,
             allowNull: false
         },
+        user_id: {
+          type: DataTypes.INTEGER,
+          references: {
+            model: 'user',
+            key: 'id',
+          },
+        },    
     },    
         {
         sequelize,
