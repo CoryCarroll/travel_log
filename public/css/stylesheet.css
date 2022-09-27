@@ -1,0 +1,34 @@
+.nav {
+    background-color: rgb(31, 28, 28);
+    color: white; 
+    padding: 30px;   
+    display: flex; 
+    font-family: 'Fredoka One';
+}
+
+span {
+    color: rgb(218, 80, 7);
+}
+
+.nav-link {
+    color: rgb(218, 80, 7);
+}
+
+.borderEdge {
+    background-color: rgb(218, 80, 7);
+    height: 8px;
+}
+
+/* .img {
+    display: flex;
+    justify-content: center;
+} */
+
+.background-img {
+    background-image: url('../images/bulletin-board-gbc9a64e68_1920.cpy.jpg');
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class History extends Model {}
+class Wishlist extends Model {}
 
-History.init(
+Wishlist.init(
     {
         id: {
           type: DataTypes.INTEGER,
@@ -15,7 +15,7 @@ History.init(
           type: DataTypes.STRING,
           allowNull: false,
         },
-        cost: {
+        budget: {
           type: DataTypes.DECIMAL,
           allowNull: false,
         },
@@ -44,8 +44,8 @@ History.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'History',
+        modelName: 'wishlist',
         }
 );
 
-module.exports = History;
+module.exports = Wishlist;
