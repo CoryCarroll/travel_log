@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const {Post} = require("../../models");
+const {Wishlist} = require("../../models");
 const withAuth = require("../../utils/auth");
 
 router.get("/", withAuth, async (req, res) => {
     try {
-      const posts = await Post.findAll();
-      res.status(200).json(posts);
+      const wishlist = await Wishlist.findAll();
+      res.status(200).json(wishlist);
     } catch (error) {
       res.status(500).json(error);
       console.log(error);
@@ -14,12 +14,12 @@ router.get("/", withAuth, async (req, res) => {
 
   router.post('/', withAuth, async (req, res) => {
     try {
-      const newPost = await Post.create({
+      const newWish = await Wishlist.create({
         ...req.body,
         destination: req.session.destination,
       });
   
-      res.status(200).json(newPost);
+      res.status(200).json(newWish);
     } catch (err) {
       res.status(400).json(err);
     }
@@ -27,12 +27,12 @@ router.get("/", withAuth, async (req, res) => {
 
   router.put('/:destination', withAuth, async (req, res) => {
     try {
-      const updatePost = await Post.update(req.body, {
+      const updateWish = await Wishlist.update(req.body, {
         where: {
           destination: req.params.destination,
         },
       });
-      res.status(200).json(updatePost);
+      res.status(200).json(updateWish);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -40,13 +40,13 @@ router.get("/", withAuth, async (req, res) => {
   
   router.delete('/:destination', withAuth, async (req, res) => {
     try {
-      const postData = await Post.destroy({
+      const wishData = await Wishlist.destroy({
         where: {
           id: req.params.id,
           destination: req.session.destination,
         },
-      });
-      res.status(200).json(postData);
+      });  
+      res.status(200).json(wishData);
     } catch (err) {
       res.status(500).json(err);
     }
