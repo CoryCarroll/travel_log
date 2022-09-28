@@ -5,14 +5,14 @@ const bcrypt = require('bcrypt');
 // CREATE new user
 router.post("/", async (req, res) => {
   try {
-    const dbUserData = await User.create(req.body);
-    // req.session.save(() => {
-    //   req.session.loggedIn = true;
-    //   req.session.name = dbUserData.name;
-    //   req.session.user_id = dbUserData.id;
+    const userData = await User.create(req.body);
+    req.session.save(() => {
+      req.session.loggedIn = true;
+      req.session.name = userData.name;
+      req.session.user_id = userData.id;
 
-      res.status(200).json(dbUserData);
-    // });
+      res.status(200).json(userData);
+    });
   } catch (err) {
     console.log(err);
     res.status(400).json(err.message);
@@ -26,26 +26,26 @@ router.post("/login", async (req, res) => {
         email: req.body.email,
       },
     });
-
+    console.log('Working?')
     if (!user) {
       res.status(400).json({ message: "Incorrect username" });
       return;
     }
-    const validPassword = await user.checkPassword(req.body.password);
+    const validPassword = user.checkPassword(req.body.password);
 
     if (!validPassword) {
       res.status(400).json({ message: "Incorrect password" });
       return;
     }
 
-    // req.session.save(() => {
-    //   req.session.loggedIn = true;
-    //   req.session.name = user.name;
-    //   req.session.user_id = user.id;
-    //   console.log(req.session.cookie);
+    req.session.save(() => {
+      req.session.loggedIn = true;
+      req.session.name = user.name;
+      req.session.user_id = user.id;
+      console.log(req.session.cookie);
 
       res.status(200).json({ user, message: "You are now logged in!" });
-    // });
+    });
   } catch (error) {
     console.log(error);
   }
