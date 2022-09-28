@@ -7,6 +7,7 @@ const loginFormHandler = async (event) => {
     console.log(password)
 
     if (email && password) {
+      // Sends a post request to API endpoint
       const response = await fetch('/api/user/login', {
         method: 'POST',
         body: JSON.stringify({ email, password }),
@@ -14,7 +15,8 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/');
+        // Upon succesful post, user gets redirected to the homepage
+        document.location.replace('/profile');
       } else {
         alert('Failed to log in.');
       }
@@ -31,14 +33,14 @@ const loginFormHandler = async (event) => {
     if (name && email && password) {
       const response = await fetch('/api/user', {
         method: 'POST',
-        body: JSON.stringify({ name, email, password }),-
+        body: JSON.stringify({ name, email, password }),
         headers: { 'Content-Type': 'application/json' },
       },
       // console.log(response)
       );
 
       if (response.ok) {
-        document.location.replace('/');
+        document.location.replace('/profile');
       } else {
         alert('Failed to sign up.');
       }

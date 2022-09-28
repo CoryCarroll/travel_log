@@ -1,29 +1,39 @@
 const router = require('express').Router();
-const { User } = require('../models');
-// const { History } = require('../models');
+const { User, Wishlist, History } = require('../models');
+const withAuth = require('../utils/auth')
 
 router.get('/', async (req, res) => {
   try {
     // Get all users, sorted by name
-    const userData = await User.findAll({
+    const historyData = await History.findAll({
       attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
+      order: [['destination', 'ASC']],
     });
 
+    const wishlistData = await Wishlist.findAll({
+      attributes: { exclude: ['password'] },
+      order: [['destination', 'ASC']],
+    });
+
+
     // Serialize user data so templates can read it
-    const users = userData.map((project) => project.get({ plain: true }));
+    const historyLog = historyData.map((history) => history.get({ plain: true }));
+    const wishlistLog = wishlistData.map((wishlist) => wishlist.get({ plain: true }));
 
     // Pass serialized data into Handlebars.js template
-    res.render('homepage', { users, loggedIn: req.session.loggedIn });
+    res.render('homepage', { 
+      historyLog,
+      wishlistLog,
+      logged_in: req.session.logged_in });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 
-router.get('/project/:id', async (req, res) => {
+router.get('/history/:id', async (req, res) => {
   try {
-    const projectData = await Project.findByPk(req.params.id, {
+    const historyData = await history.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -32,10 +42,10 @@ router.get('/project/:id', async (req, res) => {
       ],
     });
 
-    const project = projectData.get({ plain: true });
+    const history = historyData.get({ plain: true });
 
-    res.render('project', {
-      ...project,
+    res.render('history', {
+      ...history,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -44,17 +54,17 @@ router.get('/project/:id', async (req, res) => {
 });
 
 // Use withAuth middleware to prevent access to route
-router.get('/user', async (req, res) => {
+router.get('/profile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Project }],
+      include: [{ model: Wishlist, History }],
     });
 
     const user = userData.get({ plain: true });
 
-    res.render('user', {
+    res.render('profile', {
       ...user,
       logged_in: true
     });
@@ -65,10 +75,10 @@ router.get('/user', async (req, res) => {
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
-  // if (req.session.logged_in) {
-  //   res.redirect('/user');
-  //   return;
-  // }
+  if (req.session.logged_in) {
+    res.redirect('/profile');
+    return;
+  }
 
   res.render('login');
 });
