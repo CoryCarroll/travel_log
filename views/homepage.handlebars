@@ -1,4 +1,19 @@
+
 {{#if logged_in}}
   <h1>Welcome {{user}}</h1>
+  <input type="text" class="form-control" name="destination" id="destination"></input>
+  <button id="search">Search</button>
 {{/if}}
+
+<div>
+  <div id="name"></div>
+  <div id="photos" ></div>
+  <div id="known-for"></div>
+  <div id="budget"></div>
+  <div id="safety"></div>
+  <div id="covid"></div>
+  <div id="walk-score"></div>
+  <div id="population"></div>
+</div>
+<script src="./js/destinations.js"></script>
 
