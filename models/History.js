@@ -17,18 +17,18 @@ History.init(
         },
         cost: {
           type: DataTypes.DECIMAL,
-          allowNull: false,
+          allowNull: true,
         },
         events: {
           type: DataTypes.STRING,
-          allowNull: false,
+          allowNull: true,
         },
         landmarks: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         duration: {
-            type: DataTypes.DECIMAL,
+            type: DataTypes.STRING,
             allowNull: false
         },
         user_id: {

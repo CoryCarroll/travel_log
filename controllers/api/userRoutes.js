@@ -4,16 +4,14 @@ const bcrypt = require('bcrypt');
 
 // CREATE new user
 router.post("/", async (req, res) => {
-  console.log('something funny');
   try {
-    const dbUserData = await User.create(req.body);
-
+    const userData = await User.create(req.body);
     req.session.save(() => {
-      req.session.loggedIn = true;
-      req.session.name = dbUserData.name;
-      req.session.user_id = dbUserData.id;
+      req.session.logged_in = true;
+      req.session.name = userData.name;
+      req.session.user_id = userData.id;
 
-      res.status(200).json(dbUserData);
+      res.status(200).json(userData);
     });
   } catch (err) {
     console.log(err);
@@ -25,15 +23,15 @@ router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({
       where: {
-        username: req.body.username,
+        email: req.body.email,
       },
     });
-
+    console.log('Working?')
     if (!user) {
       res.status(400).json({ message: "Incorrect username" });
       return;
     }
-    const validPassword = await user.checkPassword(req.body.password);
+    const validPassword = user.checkPassword(req.body.password);
 
     if (!validPassword) {
       res.status(400).json({ message: "Incorrect password" });
@@ -41,7 +39,7 @@ router.post("/login", async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.loggedIn = true;
+      req.session.logged_in = true;
       req.session.name = user.name;
       req.session.user_id = user.id;
       console.log(req.session.cookie);
@@ -54,7 +52,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/logout", (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
     });

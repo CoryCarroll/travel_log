@@ -6,8 +6,8 @@ const historyRoute = require('./historyRoute');
 
 
 router.use("/user", userRoutes);
-router.use('/user/wishlist', wishlistRoute);
-router.use('/user/history', historyRoute);
+router.use('/wishlist', wishlistRoute);
+router.use('/history', historyRoute);
 
 router.use('/post', postRoutes);
 

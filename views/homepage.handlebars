@@ -1,24 +1,19 @@
-<!-- Loop over each object in the projects array -->
-{{#each projects as |project| }}
-<div class="row mb-4 project">
-  <div class="col-md-5">
-    <h2>
-      <!-- Call helper function with triple brackets to render the emoji span as HTML -->
-      {{{get_emoji}}}
-      <a href="/project/{{project.id}}">{{project.name}}</a>
-    </h2>
-    <p>
-      <span for="img" aria-label="money">💲</span>
-      <!-- Pass needed_funding value to the helper function -->
-      <span class="dollar-amount">{{format_amount project.needed_funding}}</span>
-      needed!
-    </p>
-    <p>Created by {{project.user.name}} on {{format_date project.date_created}}</p>
-  </div>
-  <div class="col-md-7">
-    <p>
-      {{project.description}}
-    </p>
-  </div>
+
+{{#if logged_in}}
+  <h1>Welcome {{user}}</h1>
+  <input type="text" class="form-control" name="destination" id="destination"></input>
+  <button id="search">Search</button>
+{{/if}}
+
+<div>
+  <div id="name"></div>
+  <div id="photos" ></div>
+  <div id="known-for"></div>
+  <div id="budget"></div>
+  <div id="safety"></div>
+  <div id="covid"></div>
+  <div id="walk-score"></div>
+  <div id="population"></div>
 </div>
-{{/each}}
+<script src="./js/destinations.js"></script>
+
