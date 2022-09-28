@@ -31,13 +31,22 @@ Wishlist.init(
             type: DataTypes.DECIMAL,
             allowNull: false
         },
+        user_id: {
+          type: DataTypes.INTEGER,
+          references: {
+            model: 'user',
+            key: 'id',
+          },
+        },    
     },    
         {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'Wishlist',
+
+        modelName: 'wishlist',
+
         }
 );
 
