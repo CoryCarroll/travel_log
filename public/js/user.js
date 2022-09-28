@@ -6,7 +6,7 @@ const newFormHandler = async (event) => {
     const description = document.querySelector('#project-desc').value.trim();
   
     if (name && needed_funding && description) {
-      const response = await fetch(`/api/projects`, {
+      const response = await fetch(`/api/user`, {
         method: 'POST',
         body: JSON.stringify({ name, needed_funding, description }),
         headers: {
@@ -26,7 +26,7 @@ const newFormHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
       const id = event.target.getAttribute('data-id');
   
-      const response = await fetch(`/api/projects/${id}`, {
+      const response = await fetch(`/api/user/${id}`, {
         method: 'DELETE',
       });
   
@@ -37,7 +37,7 @@ const newFormHandler = async (event) => {
       }
     }
   };
-  
+  // TODO: connect to history/wishlist
   document
     .querySelector('.new-project-form')
     .addEventListener('submit', newFormHandler);

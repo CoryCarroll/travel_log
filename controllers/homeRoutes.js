@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
     const users = userData.map((project) => project.get({ plain: true }));
 
     // Pass serialized data into Handlebars.js template
-    res.render('homepage', { users });
+    res.render('homepage', { users, loggedIn: req.session.loggedIn });
   } catch (err) {
     res.status(500).json(err);
   }
