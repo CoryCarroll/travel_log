@@ -21,15 +21,15 @@ Wishlist.init(
         },
         events: {
           type: DataTypes.STRING,
-          allowNull: false,
+          allowNull: true,
         },
         landmarks: {
             type: DataTypes.STRING,
             allowNull: false,
         },
         duration: {
-            type: DataTypes.DECIMAL,
-            allowNull: false
+            type: DataTypes.STRING,
+            allowNull: true
         },
         user_id: {
           type: DataTypes.INTEGER,
