@@ -4,17 +4,15 @@ const bcrypt = require('bcrypt');
 
 // CREATE new user
 router.post("/", async (req, res) => {
-  console.log('something funny');
   try {
     const dbUserData = await User.create(req.body);
-
-    req.session.save(() => {
-      req.session.loggedIn = true;
-      req.session.name = dbUserData.name;
-      req.session.user_id = dbUserData.id;
+    // // req.session.save(() => {
+    //   req.session.loggedIn = true;
+    //   req.session.name = dbUserData.name;
+    //   req.session.user_id = dbUserData.id;
 
       res.status(200).json(dbUserData);
-    });
+    // });
   } catch (err) {
     console.log(err);
     res.status(400).json(err.message);
@@ -25,7 +23,7 @@ router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({
       where: {
-        username: req.body.username,
+        name: req.body.name,
       },
     });
 
