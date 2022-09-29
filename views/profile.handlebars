@@ -1,4 +1,4 @@
-<div class="row">
+ <div class="row">
   <div class="col-auto">
     <h2>Welcome, {{name}}!</h2>
   </div>
@@ -60,11 +60,18 @@
                   history
                 </h3>
                 <div class="card-body">
+                  {{#each history as |history|}}
+                  <p>
+                    {{history.destination}}
+                    {{history.cost}}
+                    {{history.landmarks}}
+                    {{history.duration}}
+                  </p>
+                  {{!-- <button class="btn btn-block btn-info" data-destination="{{history.destination}}">delete</button>
+                  <button class="btn btn-block btn-info" data-destination="{{history.destination}}">update</button> --}}
                   <div>
-                    <p>empty div</p>
                   </div>
-                  <button class="btn btn-block btn-secondary">delete</button>
-                  <button class="btn btn-block btn-secondary">update</button>
+                  {{/each}}
                 </div>
               </div>
             </div>
@@ -79,8 +86,8 @@
         <input class="form-input" type="text" id="destination" name="destination" />
       </div>
       <div class="form-group">
-        <label for="budget">cost:</label>
-        <input class="form-input" type="number" id="budget" name="budget" />
+        <label for="cost">cost:</label>
+        <input class="form-input" type="number" id="cost" name="budget" />
       </div>
       <div class="form-group">
         <label for="landmarks">landmarks:</label>
