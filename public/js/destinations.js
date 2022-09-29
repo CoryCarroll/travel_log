@@ -34,6 +34,7 @@
 //         console.log(goatData);
 //     })
 // };
+
 function searchHandler() {
     const destinationSearch = document.getElementById('destination').value
     fetch ('/destination', {
@@ -44,6 +45,7 @@ function searchHandler() {
 };
 
 document.querySelector('#search').addEventListener('click', searchHandler);
+
 
 // searchBtn.on('click', function () {
 //     displayDestination(destinationSearch.val());

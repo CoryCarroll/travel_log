@@ -11,9 +11,9 @@
     "follow-redirects": "^1.15.2",
     "handlebars": "^4.7.7",
     "mysql2": "^2.3.3",
-    "package.json": "^2.0.1",
+    "package.json": "^0.0.0",
     "sequelize": "^6.23.2",
-    "update": "^0.7.4"
+    "update": "^0.4.2"
   },
   "type": "commonjs"
 }

@@ -1,52 +1,109 @@
-<div class="row">
+ <div class="row">
   <div class="col-auto">
     <h2>Welcome, {{name}}!</h2>
   </div>
 </div>
 
-<div class="row mt-4">
-  <div class="col-md-6">
-    <h3>view history:</h3>
+<header class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <div class="row align-items-end">
+          <div class="apiCardData">
+              <div>
+                <div id="name"></div>
+                <div id="photo" ></div>
+                <div id="known-for"></div>
+                <div id="budget"></div>
+                <div id="safety"></div>
+                <div id="covid"></div>
+                <div id="walk-score"></div>
+                <div id="population"></div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-12 col-md-6">
+            <form class="form-inline">
+              <div class="form-group">
+                <label for=""></label>
+                <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+              </div>
+            </form>
+            <button class="btn btn-secondary">search</button>
+            <button class="btn btn-secondary">add to wishlist</button>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <main class="container">
+      <section class="row my-4">
+        <div class="col-12 col-md-9">
+          <section class="row justify-content-around">
+  
+            <div class="col-12 col-lg-6">
+              <div class="card">
+                <h3 class="card-header bg-dark text-white">
+                  wishlist
+                </h3>
+                <div class="card-body">
+                  <div>
+                    <p>empty div</p>
+                  </div>
+                  <button class="btn btn-block btn-secondary">delete</button>
+                  <button class="btn btn-block btn-secondary">update</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6">
+              <div class="card">
+                <h3 class="card-header bg-dark text-white">
+                  history
+                </h3>
+                <div class="card-body">
+                  {{#each history as |history|}}
+                  <p>
+                    {{history.destination}}
+                    {{history.cost}}
+                    {{history.landmarks}}
+                    {{history.duration}}
+                  </p>
+                  {{!-- <button class="btn btn-block btn-info" data-destination="{{history.destination}}">delete</button>
+                  <button class="btn btn-block btn-info" data-destination="{{history.destination}}">update</button> --}}
+                  <div>
+                  </div>
+                  {{/each}}
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="col-12 col-md-3">
+          <h2>share where you've been!</h2>
 
-    <form class="form new-history-form">
+      <form class="form new-history-form">
       <div class="form-group">
-        <label for="destination">Destination:</label>
+        <label for="destination">destination:</label>
         <input class="form-input" type="text" id="destination" name="destination" />
       </div>
       <div class="form-group">
-        <label for="budget">Budget:</label>
-        <input class="form-input" type="number" id="budget" name="budget" />
+        <label for="cost">cost:</label>
+        <input class="form-input" type="number" id="cost" name="budget" />
       </div>
       <div class="form-group">
-        <label for="landmarks">Landmarks:</label>
+        <label for="landmarks">landmarks:</label>
         <textarea class="form-input" id="landmarks" name="landmarks"></textarea>
       </div>
             <div class="form-group">
-        <label for="duration">Duration:</label>
+        <label for="duration">duration:</label>
         <input class="form-input" type="text" id="duration" name="duration" />
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-secondary">Create</button>
       </div>
     </form>
   </div>
 
-  {{#if history.length}}
-  <div class="col-md-6 history-list">
-    <h3>Past vacations:</h3>
 
-    {{#each history as |history|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/history/{{history.id}}">{{history.destination}}</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{history.id}}">DELETE</button>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-  {{/if}}
-</div>
+
 
 <script src="./js/profile.js"></script>

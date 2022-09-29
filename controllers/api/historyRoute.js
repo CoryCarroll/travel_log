@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
     try {
       const newHistory = await History.create({
         ...req.body,
-        destination: req.session.destination,
+        user_id: req.session.user_id,
       });
   
       res.status(200).json(newHistory);
@@ -25,11 +25,11 @@ router.get("/", async (req, res) => {
     }
   });
 
-  router.put('/:destination', async (req, res) => {
+  router.put('/:id', async (req, res) => {
     try {
       const updateHistory = await History.update(req.body, {
         where: {
-          destination: req.params.destination,
+          user_id: req.params.user_id,
         },
       });
       res.status(200).json(updateHistory);
@@ -38,12 +38,12 @@ router.get("/", async (req, res) => {
     }
   });
   
-  router.delete('/:destination', async (req, res) => {
+  router.delete('/:id', async (req, res) => {
     try {
       const historyData = await History.destroy({
         where: {
           id: req.params.id,
-          destination: req.session.destination,
+          user_id: req.session.user_id,
         },
       });  
       res.status(200).json(historyData);

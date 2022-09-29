@@ -19,10 +19,6 @@ History.init(
           type: DataTypes.DECIMAL,
           allowNull: true,
         },
-        events: {
-          type: DataTypes.STRING,
-          allowNull: true,
-        },
         landmarks: {
             type: DataTypes.STRING,
             allowNull: true,
@@ -44,7 +40,7 @@ History.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'History',
+        modelName: 'history',
         }
 );
 
