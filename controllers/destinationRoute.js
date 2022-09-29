@@ -12,8 +12,11 @@
 // const covidEl = $('#covid');
 // const walkEl = $('#walk-score');
 // const popEl = $('#population');
-// const router = require('express').Router()
-// const axios = require('axios');
+
+const router = require('express').Router()
+const axios = require('axios');
+// const searchInput = "Mexico"
+
 
 // searchBtn.on('click', function () {
 //     displayDestination(destSearch.val());
@@ -68,3 +71,21 @@
 // });
 
 // module.exports = router
+
+router.get('/', (req, res) => {
+const options = {
+    'method': 'GET',
+    'url': `http://api.roadgoat.com/api/v2/destinations/auto_complete?q=${data}`, // change barcelona to ${}
+    'headers': {
+      'Authorization': `Basic ${auth_key}`
+    },
+  
+  };
+  console.log(data);
+  res.json(JSON.parse(options))
+});
+
+
+
+module.exports = router
+
