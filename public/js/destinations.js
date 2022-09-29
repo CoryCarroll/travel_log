@@ -35,18 +35,18 @@
 //     })
 // };
 
-searchHandler = () => {
-    // const destinationSearch = document.getElementById('destination').value
-    fetch ('/destination', {
-        method: "GET",
-        headers: {"Content-Type": "application/json"}
-    })
-}
+// searchHandler = () => {
+//     // const destinationSearch = document.getElementById('destination').value
+//     fetch ('/destination', {
+//         method: "GET",
+//         headers: {"Content-Type": "application/json"}
+//     })
+// }
 
 
 
 
-document.querySelector('#search').addEventListener('click', searchHandler)
+// document.querySelector('#search').addEventListener('click', searchHandler)
 
 // searchBtn.on('click', function () {
 //     displayDestination(destSearch.val());
