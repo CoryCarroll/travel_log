@@ -1,7 +1,7 @@
 [
     {
       "destination": "France",
-      "budget": 4000,
+      "cost": 4000,
       "landmarks": "Eifle Tower",
       "duration": "1 week"
     }
