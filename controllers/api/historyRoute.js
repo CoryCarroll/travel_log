@@ -1,22 +1,22 @@
 const router = require("express").Router();
 const {History} = require("../../models");
-// const withAuth = require("../../utils/auth");
+const withAuth = require("../../utils/auth");
 
-router.get("/", async (req, res) => {
-    try {
-      const history = await History.findAll();
-      res.status(200).json(history);
-    } catch (error) {
-      res.status(500).json(error);
-      console.log(error);
-    }
-  });
+// router.get("/", async (req, res) => {
+//     try {
+//       const history = await History.findAll();
+//       res.status(200).json(history);
+//     } catch (error) {
+//       res.status(500).json(error);
+//       console.log(error);
+//     }
+//   });
 
-  router.post('/', async (req, res) => {
+  router.post('/', withAuth, async (req, res) => {
     try {
       const newHistory = await History.create({
         ...req.body,
-        destination: req.session.destination,
+        user_id: req.session.user_id,
       });
   
       res.status(200).json(newHistory);
@@ -25,25 +25,25 @@ router.get("/", async (req, res) => {
     }
   });
 
-  router.put('/:destination', async (req, res) => {
-    try {
-      const updateHistory = await History.update(req.body, {
-        where: {
-          destination: req.params.destination,
-        },
-      });
-      res.status(200).json(updateHistory);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+  // router.put('/:id', async (req, res) => {
+  //   try {
+  //     const updateHistory = await History.update(req.body, {
+  //       where: {
+  //         user_id: req.params.user_id,
+  //       },
+  //     });
+  //     res.status(200).json(updateHistory);
+  //   } catch (err) {
+  //     res.status(500).json(err);
+  //   }
+  // });
   
-  router.delete('/:destination', async (req, res) => {
+  router.delete('/historyLog/:id', async (req, res) => {
     try {
       const historyData = await History.destroy({
         where: {
           id: req.params.id,
-          destination: req.session.destination,
+          user_id: req.session.user_id,
         },
       });  
       res.status(200).json(historyData);

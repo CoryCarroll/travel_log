@@ -1,6 +1,21 @@
 <div class="row">
   <div class="col-auto">
     <h2>Welcome, {{name}}!</h2>
+      <input type="text" class="form-control" name="destination" id="destination"></input>
+
+  <button id="search">Search</button>
+
+<div>
+  <div id="name"></div>
+  <div id="photos" ></div>
+  <div id="known-for"></div>
+  <div id="cost"></div>
+  <div id="safety"></div>
+  <div id="covid"></div>
+  <div id="walk-score"></div>
+  <div id="population"></div>
+</div>
+
   </div>
 </div>
 
@@ -14,8 +29,8 @@
         <input class="form-input" type="text" id="destination" name="destination" />
       </div>
       <div class="form-group">
-        <label for="budget">Budget:</label>
-        <input class="form-input" type="number" id="budget" name="budget" />
+        <label for="cost">Cost:</label>
+        <input class="form-input" type="number" id="cost" name="cost" />
       </div>
       <div class="form-group">
         <label for="landmarks">Landmarks:</label>
@@ -31,14 +46,14 @@
     </form>
   </div>
 
-  {{#if history.length}}
+  {{#if historyLog.length}}
   <div class="col-md-6 history-list">
     <h3>Past vacations:</h3>
 
-    {{#each history as |history|}}
+    {{#each historyLog as |history|}}
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/history/{{history.id}}">{{history.destination}}</a></h4>
+        <h4><a href="/historyLog/{{history.id}}">{{history.destination}}</a></h4>
       </div>
       <div class="col-md-4">
         <button class="btn btn-sm btn-danger" data-id="{{history.id}}">DELETE</button>

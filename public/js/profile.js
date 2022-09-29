@@ -3,22 +3,22 @@
 
 const newFormHandler = async (event) => {
     event.preventDefault();
-  
-    const destination = document.querySelector('#destination').value.trim();
-    const budget = document.querySelector('#budget').value.trim();
-    const landmarks = document.querySelector('#landmarks').value.trim();
-    const duration = document.querySelector('#duration').value.trim();
+    console.log('working')
+    const destination = document.getElementById('destination').value.trim();
+    const cost = document.getElementById('cost').value;
+    const landmarks = document.getElementById('landmarks').value.trim();
+    const duration = document.getElementById('duration').value.trim();
 
   
-    if (destination && budget && landmarks && duration) {
-      const response = await fetch(`/api/history`, {
+    if (destination && cost && landmarks && duration) {
+      const response = await fetch(`/api/historyLog`, {
         method: 'POST',
-        body: JSON.stringify({ destination, budget, landmarks, duration }),
+        body: JSON.stringify({ destination, cost, landmarks, duration }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
-  
+      console.log(cost)
       if (response.ok) {
         document.location.replace('/profile');
       } else {
@@ -31,7 +31,7 @@ const newFormHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
       const id = event.target.getAttribute('data-id');
       // TODO: /history{history.id}???
-      const response = await fetch(`/api/history/${id}`, {
+      const response = await fetch(`/api/historyLog/${id}`, {
         method: 'DELETE',
       });
   
