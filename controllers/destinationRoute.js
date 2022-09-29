@@ -14,6 +14,7 @@ const auth_key = Buffer.from('7b21d750af3d46aeee2c5f7f8e5c5cf3:445484a4df09e1531
 // const popEl = $('#population');
 const router = require('express').Router()
 const axios = require('axios');
+// const searchInput = "Mexico"
 
 // searchBtn.on('click', function () {
 //     displayDestination(destSearch.val());
@@ -58,13 +59,16 @@ const axios = require('axios');
 router.get('/', (req, res) => {
 const options = {
     'method': 'GET',
-    'url': `http://api.roadgoat.com/api/v2/destinations/auto_complete?q=barcelona`, // change barcelona to ${}
+    'url': `http://api.roadgoat.com/api/v2/destinations/auto_complete?q=${data}`, // change barcelona to ${}
     'headers': {
       'Authorization': `Basic ${auth_key}`
     },
-  };
   
-  axios (options).then(data => res.json(data.data)).catch(error => console.log(error));
+  };
+  console.log(data);
+  res.json(JSON.parse(options))
 });
+
+
 
 module.exports = router

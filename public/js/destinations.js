@@ -2,7 +2,7 @@
 // const net = require('follow-redirects').https;
 // const fs = require('fs');
 // const auth_key = Buffer.from('7b21d750af3d46aeee2c5f7f8e5c5cf3:445484a4df09e1531dd6745bfc8d6483').toString('base64');
-// const searchBtn = $('#search');
+// const searchBtn = document.getElementById('search');
 // const destSearch = $('#destination');
 // const nameEl = $('#name');
 // const photoEl = $('#photo');
@@ -34,21 +34,18 @@
 //         console.log(goatData);
 //     })
 // };
-
-searchHandler = () => {
-    // const destinationSearch = document.getElementById('destination').value
+function searchHandler() {
+    const destinationSearch = document.getElementById('destination').value
     fetch ('/destination', {
         method: "GET",
         headers: {"Content-Type": "application/json"}
     })
-}
+    console.log(destinationSearch);
+};
 
-
-
-
-document.querySelector('#search').addEventListener('click', searchHandler)
+document.querySelector('#search').addEventListener('click', searchHandler);
 
 // searchBtn.on('click', function () {
-//     displayDestination(destSearch.val());
+//     displayDestination(destinationSearch.val());
 //     console.log('clicked!');
 // });
