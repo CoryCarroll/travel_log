@@ -4,9 +4,14 @@ This application is designed to, firstly, authenticate users before they enter t
 
 ![image info](./public/images/progy.png)
 
+## Links
+
+[TraveLog](https://serene-sierra-18598.herokuapp.com/login) <br />
+[GitHub_Repository](https://github.com/kylelarsenlarsen/Trip-Tracker)
+
 ## Credits
 
-Created by [Beck Straub](https://github.com/bckstrb)
-Created by [Cory Carroll](https://github.com/CoryCarroll)
-Created by [Marshall Jacob](https://github.com/MarshallJacob)
-Created by [Kyle Larsen](https://github.com/kylelarsenlarsen)
+Created by [Beck Straub](https://github.com/bckstrb) <br />
+Created by [Cory Carroll](https://github.com/CoryCarroll) <br />
+Created by [Marshall Jacob](https://github.com/MarshallJacob) <br />
+Created by [Kyle Larsen](https://github.com/kylelarsenlarsen) <br />
