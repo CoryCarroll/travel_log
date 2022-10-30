@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const {History} = require("../../models");
+// Need to create a connectin in the routes between history and user
+const { History } = require("../../models");
 // const withAuth = require("../../utils/auth");
 
 router.get("/", async (req, res) => {
@@ -11,6 +12,17 @@ router.get("/", async (req, res) => {
       console.log(error);
     }
   });
+
+  router.get("/:id", async (req, res) => {
+    try {
+      const history = await History.findOne();
+      res.status(200).json(history);
+    } catch (error) {
+      res.status(500).json(error);
+      console.log(error);
+    }
+  });
+
 
   router.post('/', async (req, res) => {
     try {
@@ -27,9 +39,17 @@ router.get("/", async (req, res) => {
 
   router.put('/:id', async (req, res) => {
     try {
-      const updateHistory = await History.update(req.body, {
+      const updateHistory = await History.update(
+        {
+          destination: req.body.destination,
+          cost: req.body.cost,
+          landmarks: req.body.landmarks,
+          duration: req.body.duration,
+        },
+        {
         where: {
-          user_id: req.params.user_id,
+          id: req.params.id,
+          // user_id: req.session.user_id, Add in if we create "withAuth" functionality
         },
       });
       res.status(200).json(updateHistory);
@@ -43,7 +63,7 @@ router.get("/", async (req, res) => {
       const historyData = await History.destroy({
         where: {
           id: req.params.id,
-          user_id: req.session.user_id,
+          // user_id: req.session.user_id, Add in if we create "withAuth" functionality
         },
       });  
       res.status(200).json(historyData);

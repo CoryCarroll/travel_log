@@ -13,14 +13,14 @@ const newFormHandler = async (event) => {
     if (destination && cost && landmarks && duration) {
       const response = await fetch(`/api/history`, {
         method: 'POST',
-        body: JSON.stringify({ destination, cost, landmarks, duration }),
+        body: JSON.stringify({ destination, cost, landmarks, duration, }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
   
       if (response.ok) {
-        
+
         document.location.replace('/profile');
       } else {
         alert('Failed to create history');

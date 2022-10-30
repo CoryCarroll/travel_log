@@ -4,24 +4,37 @@ const withAuth = require('../utils/auth')
 
 router.get('/', async (req, res) => {
   try {
-    // Get all users, sorted by name
+    // Get history and wishlist data to tie to a user
     const historyData = await History.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['destination', 'ASC']],
+      // attributes: { exclude: ['password'] },
+      // order: [['destination', 'ASC']],
+      include: [
+        {
+          model: User,
+          attributes: ['name']
+        },
+      ],
     });
+
+    const historyLog = historyData.map((history) => history.get({ plain: true }));
+
 
     const wishlistData = await Wishlist.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['destination', 'ASC']],
+      // attributes: { exclude: ['password'] },
+      // order: [['destination', 'ASC']],
+      include: [
+        {
+          model: User,
+          attributes: ['name']
+        },
+      ],
     });
 
-
     // Serialize user data so templates can read it
-    const historyLog = historyData.map((history) => history.get({ plain: true }));
     const wishlistLog = wishlistData.map((wishlist) => wishlist.get({ plain: true }));
 
     // Pass serialized data into Handlebars.js template
-    res.render('homepage', { 
+    res.render('profile', { 
       historyLog,
       wishlistLog,
       logged_in: req.session.logged_in });
@@ -52,6 +65,29 @@ router.get('/history/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get('/wishlist/:id', async (req, res) => {
+  try {
+    const wishlistData = await wishlist.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    const wishlist = wishlistData.get({ plain: true });
+
+    res.render('wishlist', {
+      ...history,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 // Use withAuth middleware to prevent access to route
 router.get('/profile', withAuth, async (req, res) => {
