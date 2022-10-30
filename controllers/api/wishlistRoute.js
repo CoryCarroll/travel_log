@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const {Wishlist} = require("../../models");
+const { Wishlist } = require("../../models");
 // const withAuth = require("../../utils/auth");
 
 router.get("/", async (req, res) => {
@@ -12,11 +12,22 @@ router.get("/", async (req, res) => {
     }
   });
 
+  router.get("/:id", async (req, res) => {
+    try {
+      const wishlist = await Wishlist.findOne();
+      res.status(200).json(wishlist);
+    } catch (error) {
+      res.status(500).json(error);
+      console.log(error);
+    }
+  });
+
+
   router.post('/', async (req, res) => {
     try {
       const newWish = await Wishlist.create({
         ...req.body,
-        destination: req.session.destination,
+        user_id: req.session.user_id,
       });
   
       res.status(200).json(newWish);
@@ -25,11 +36,18 @@ router.get("/", async (req, res) => {
     }
   });
 
-  router.put('/:destination', async (req, res) => {
+  router.put('/:id', async (req, res) => {
     try {
-      const updateWish = await Wishlist.update(req.body, {
+      const updateWish = await Wishlist.update(
+        {
+          destination: req.body.destination,
+          budget: req.body.budget,
+          landmarks: req.body.landmarks,
+          duration: req.body.duration,
+        },
+        {
         where: {
-          destination: req.params.destination,
+          id: req.params.id,
         },
       });
       res.status(200).json(updateWish);
@@ -38,12 +56,12 @@ router.get("/", async (req, res) => {
     }
   });
   
-  router.delete('/:destination', async (req, res) => {
+  router.delete('/:id', async (req, res) => {
     try {
       const wishData = await Wishlist.destroy({
         where: {
           id: req.params.id,
-          destination: req.session.destination,
+          // user_id: req.session.user_id, for "withAuth"
         },
       });  
       res.status(200).json(wishData);
