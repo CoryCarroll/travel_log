@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, Wishlist, History } = require('../models');
 const withAuth = require('../utils/auth')
 
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
     // Get history and wishlist data to tie to a user
     const historyData = await History.findAll({
@@ -46,7 +46,17 @@ router.get('/', async (req, res) => {
 
 router.get('/history/:id', async (req, res) => {
   try {
-    const historyData = await history.findByPk(req.params.id, {
+    const historyData = await History.findOne(req.params.id, {
+      where: {
+        id: req.params.id
+      },
+      attributes: [
+        'id',
+        'destination',
+        'cost',
+        'landmarks',
+        'duration',
+      ],
       include: [
         {
           model: User,
@@ -68,7 +78,17 @@ router.get('/history/:id', async (req, res) => {
 
 router.get('/wishlist/:id', async (req, res) => {
   try {
-    const wishlistData = await wishlist.findByPk(req.params.id, {
+    const wishlistData = await Wishlist.findOne(req.params.id, {
+      where: {
+        id: req.params.id
+      },
+      attributes: [
+        'id',
+        'destination',
+        'budget',
+        'landmarks',
+        'duration',
+      ],
       include: [
         {
           model: User,
@@ -80,7 +100,7 @@ router.get('/wishlist/:id', async (req, res) => {
     const wishlist = wishlistData.get({ plain: true });
 
     res.render('wishlist', {
-      ...history,
+      ...wishlist,
       logged_in: req.session.logged_in
     });
   } catch (err) {
