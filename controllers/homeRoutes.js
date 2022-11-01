@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, Wishlist, History } = require('../models');
 const withAuth = require('../utils/auth')
 
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
     // Get history and wishlist data to tie to a user
     const historyData = await History.findAll({
