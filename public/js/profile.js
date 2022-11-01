@@ -21,7 +21,7 @@ const newFormHandler = async (event) => {
   
       if (response.ok) {
 
-        document.location.replace('/profile');
+        document.location.replace('/');
       } else {
         alert('Failed to create history');
       }
@@ -37,7 +37,7 @@ const newFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/profile');
+        document.location.replace('/');
       } else {
         alert('Failed to delete history');
       }
