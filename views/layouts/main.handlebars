@@ -24,7 +24,7 @@
 <body>
   <nav class="nav">
   <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
+    <header>
         <h1 class="title">trave<span>L</span>og</h1>
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}} |
@@ -34,6 +34,7 @@
         {{/if}}
       </nav>
     </header>
+    <div class="borderEdge"></div>
     <main class="container container-fluid mt-5">
       <!-- Render the sub layout -->
       {{{ body }}}
