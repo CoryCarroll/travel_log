@@ -26,6 +26,7 @@ router.post("/login", async (req, res) => {
         email: req.body.email,
       },
     });
+    console.log(user, '--------------------------------------------------------------');
     console.log('Working?')
     if (!user) {
       res.status(400).json({ message: "Incorrect username" });

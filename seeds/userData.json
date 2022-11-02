@@ -2,6 +2,7 @@
   {
     "name": "Marshall",
     "email": "marsh@email.com",
-    "password": "password"
+    "password": "password",
+    "logged_in": false
   }
 ]
