@@ -48,14 +48,17 @@
                 {{#each wishlistLog as |wishlist|}}
                 <div class="card-body">
                   <div>
+
                     <p>
                     Destination: {{wishlist.destination}} |
                     Budget: ${{wishlist.budget}} |
                     Landmarks: {{wishlist.landmarks}} |
                     Duration: {{wishlist.duration}} |
                     </p>
+
                   </div>
                   <button class="btn btn-block btn-secondary">delete</button>
+                  <br>
                   <button class="btn btn-block btn-secondary">update</button>
                 </div>
                 {{/each}}
@@ -67,6 +70,11 @@
                   history
                 </h3>
                 <div class="card-body">
+
+                  <button class="btn btn-block btn-secondary">delete</button>
+                  <br>
+                  <button class="btn btn-block btn-secondary">update</button>
+
                   {{#each historyLog as |history|}}
                   <p>
                     Destination: {{history.destination}} |
