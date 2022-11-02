@@ -1,4 +1,4 @@
-<div class="row">
+ <div class="row">
   <div class="col-auto">
     <h2>Welcome, {{name}}!</h2>
   </div>
@@ -45,14 +45,23 @@
                 <h3 class="card-header bg-dark text-white">
                   wishlist
                 </h3>
+                {{#each wishlistLog as |wishlist|}}
                 <div class="card-body">
                   <div>
-                    <p>you do not have a wishlist yet</p>
+
+                    <p>
+                    Destination: {{wishlist.destination}} |
+                    Budget: ${{wishlist.budget}} |
+                    Landmarks: {{wishlist.landmarks}} |
+                    Duration: {{wishlist.duration}} |
+                    </p>
+
                   </div>
                   <button class="btn btn-block btn-secondary">delete</button>
                   <br>
                   <button class="btn btn-block btn-secondary">update</button>
                 </div>
+                {{/each}}
               </div>
             </div>
             <div class="col-12 col-lg-6">
@@ -61,12 +70,21 @@
                   history
                 </h3>
                 <div class="card-body">
-                  <div>
-                    <p>you have not traveled anywhere</p>
-                  </div>
+
                   <button class="btn btn-block btn-secondary">delete</button>
                   <br>
                   <button class="btn btn-block btn-secondary">update</button>
+
+                  {{#each historyLog as |history|}}
+                  <p>
+                    Destination: {{history.destination}} |
+                    Cost: ${{history.cost}} |
+                    Landmarks: {{history.landmarks}} |
+                    Duration: {{history.duration}}
+                  </p>
+                  <button class="btn btn-block btn-info" data-destination="{{history.destination}}">delete</button>
+                  <button class="btn btn-block btn-info" data-destination="{{history.destination}}">update</button>
+                  {{/each}}
                 </div>
               </div>
             </div>
@@ -81,8 +99,8 @@
         <input class="form-input" type="text" id="destination" name="destination" />
       </div>
       <div class="form-group">
-        <label for="budget">cost:</label>
-        <input class="form-input" type="number" id="budget" name="budget" />
+        <label for="cost">cost:</label>
+        <input class="form-input" type="number" id="cost" name="budget" />
       </div>
       <div class="form-group">
         <label for="landmarks">landmarks:</label>

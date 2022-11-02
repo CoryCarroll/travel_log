@@ -19,10 +19,6 @@ Wishlist.init(
           type: DataTypes.DECIMAL,
           allowNull: false,
         },
-        events: {
-          type: DataTypes.STRING,
-          allowNull: true,
-        },
         landmarks: {
             type: DataTypes.STRING,
             allowNull: false,

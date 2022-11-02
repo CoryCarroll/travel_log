@@ -5,6 +5,7 @@ const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 const sequelize = require('./config/connection');
 const session = require('express-session');
+// const noteValue = require('./seeds/historyData.json');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -24,6 +25,11 @@ const sess = {
   }),
 };
 
+// app.post('/api/history', (req, res) => {
+//   console.log('noteValue', noteValue);
+//   const scribe = newNote(req.body, noteValue);
+//   res.json(scribe);
+// });
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');

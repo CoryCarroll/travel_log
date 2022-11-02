@@ -16,7 +16,7 @@ const loginFormHandler = async (event) => {
   
       if (response.ok) {
         // Upon succesful post, user gets redirected to the homepage
-        document.location.replace('/profile');
+        document.location.replace('/');
       } else {
         alert('Failed to log in.');
       }
@@ -41,7 +41,7 @@ const loginFormHandler = async (event) => {
 
       if (response.ok) {
 
-        document.location.replace('/profile');
+        document.location.replace('/');
 
       } else {
         alert('Failed to sign up.');

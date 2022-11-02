@@ -5,22 +5,23 @@ const newFormHandler = async (event) => {
     event.preventDefault();
   
     const destination = document.querySelector('#destination').value.trim();
-    const budget = document.querySelector('#budget').value.trim();
+    const cost = document.querySelector('#cost').value.trim();
     const landmarks = document.querySelector('#landmarks').value.trim();
     const duration = document.querySelector('#duration').value.trim();
 
   
-    if (destination && budget && landmarks && duration) {
+    if (destination && cost && landmarks && duration) {
       const response = await fetch(`/api/history`, {
         method: 'POST',
-        body: JSON.stringify({ destination, budget, landmarks, duration }),
+        body: JSON.stringify({ destination, cost, landmarks, duration, }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
   
       if (response.ok) {
-        document.location.replace('/profile');
+
+        document.location.replace('/');
       } else {
         alert('Failed to create history');
       }
@@ -36,7 +37,7 @@ const newFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/profile');
+        document.location.replace('/');
       } else {
         alert('Failed to delete history');
       }
