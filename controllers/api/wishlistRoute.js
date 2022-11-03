@@ -63,7 +63,12 @@ router.get("/", async (req, res) => {
           id: req.params.id,
           // user_id: req.session.user_id, for "withAuth"
         },
-      });  
+      }); 
+      
+      if (!wishData) {
+        res.status(404).json({ message: 'No wish found with this id!' });
+        return;
+      }
       res.status(200).json(wishData);
     } catch (err) {
       res.status(500).json(err);
