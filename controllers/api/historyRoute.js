@@ -65,7 +65,12 @@ router.get("/", async (req, res) => {
           id: req.params.id,
           // user_id: req.session.user_id, Add in if we create "withAuth" functionality
         },
-      });  
+      });
+      
+      if (!historyData) {
+        res.status(404).json({ message: 'No history found with this id!' });
+        return;
+      }
       res.status(200).json(historyData);
     } catch (err) {
       res.status(500).json(err);
