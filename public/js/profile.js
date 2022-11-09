@@ -1,13 +1,13 @@
 //TODO: create events for the profile path to hanlde saving and deleting both history and wishlist information
 
 
-const newFormHandler = async (event) => {
+const newHisFormHandler = async (event) => {
     event.preventDefault();
-  
-    const destination = document.querySelector('#destination').value.trim();
-    const cost = document.querySelector('#cost').value.trim();
-    const landmarks = document.querySelector('#landmarks').value.trim();
-    const duration = document.querySelector('#duration').value.trim();
+    console.log('prevented?')
+    const destination = document.querySelector('#hdestination').value.trim();
+    const cost = document.querySelector('#hcost').value.trim();
+    const landmarks = document.querySelector('#hlandmarks').value.trim();
+    const duration = document.querySelector('#hduration').value.trim();
 
   
     if (destination && cost && landmarks && duration) {
@@ -27,8 +27,37 @@ const newFormHandler = async (event) => {
       }
     }
   };
+
+  const newWishFormHandler = async (event) => {
+    event.preventDefault();
+    console.log('prevented?')
+    const destination = document.querySelector('#destination').value.trim();
+    const budget = document.querySelector('#budget').value.trim();
+    const landmarks = document.querySelector('#landmarks').value.trim();
+    const duration = document.querySelector('#duration').value.trim();
+
+  
+    if (destination && budget && landmarks && duration) {
+      const response = await fetch(`/api/wishlist`, {
+        method: 'POST',
+        body: JSON.stringify({ destination, budget, landmarks, duration, }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (response.ok) {
+
+        document.location.replace('/');
+      } else {
+        alert('Failed to create wishlist item');
+      }
+    }
+  };
+
   
   const delButtonHandler = async (event) => {
+    event.preventDefault();
     if (event.target.hasAttribute('data-id')) {
       const id = event.target.getAttribute('data-id');
       // TODO: /history{history.id}???
@@ -63,7 +92,11 @@ const newFormHandler = async (event) => {
   // TODO: connect to history/wishlist
   document
     .querySelector('.new-history-form')
-    .addEventListener('submit', newFormHandler);
+    .addEventListener('submit', newHisFormHandler);
+  
+  document
+    .querySelector('.new-wishlist-form')
+    .addEventListener('submit', newWishFormHandler);
   
   document
     .querySelector('.history-card')

@@ -1,42 +1,85 @@
  <div class="row">
   <div class="col-auto">
-    <h2>Welcome!</h2>
+    <h2 id="welc">Welcome!</h2>
   </div>
 </div>
 
-<header class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <div class="row align-items-end">
-          <div class="apiCardData">
-              <div>
-                <div id="name"></div>
-                <div id="photo" ></div>
-                <div id="known-for"></div>
-                <div id="budget"></div>
-                <div id="safety"></div>
-                <div id="covid"></div>
-                <div id="walk-score"></div>
-                <div id="population"></div>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-12 col-md-6">
-            <form class="form-inline">
-              <div class="form-group">
-                <label for=""></label>
-                <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
-              </div>
-            </form>
-            <button class="btn btn-secondary">search</button>
-            <button class="btn btn-secondary">add to wishlist</button>
-          </div>
-        </div>
+{{!-- Possible space for future development. SEARCH BAR SECTION --}}
+{{!-- <header class="jumbotron jumbotron-fluid"> 
+  <div class="col-12 col-md-6">
+    <form class="form-inline">
+      <div class="form-group">
+        <label for=""></label>
+        <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
       </div>
-    </header>
+    </form>
+      <button class="btn btn-secondary">search</button>
+      <button class="btn btn-secondary">add to wishlist</button>
+  </div>
+</header> --}}
   
-    <main class="container">
-      <section class="row my-4">
+<main class="container" id="subs">
+  <section class="row my-6">
+    <div class="col-12 col-lg-4">
+    <section class="row justify-content-around">
+
+    <h2>Where are you going?</h2>
+    
+    <form class="form new-wishlist-form">
+      <div class="form-group">
+        <label for="destination">destination:</label>
+        <input class="form-input" type="text" id="destination" name="destination" />
+      </div>
+      <div class="form-group">
+        <label for="budget">budget:</label>
+        <input class="form-input" type="number" id="budget" name="budget" />
+      </div>
+      <div class="form-group">
+        <label for="landmarks">landmarks:</label>
+        <textarea class="form-input" id="landmarks" name="landmarks"></textarea>
+      </div>
+            <div class="form-group">
+        <label for="duration">duration:</label>
+        <input class="form-input" type="text" id="duration" name="duration" />
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-secondary">Create</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-12 col-lg-4">
+    <h2>Where have you been?</h2>
+    
+    <form class="form new-history-form">
+      <div class="form-group">
+        <label for="destination">destination:</label>
+        <input class="form-input" type="text" id="hdestination" name="destination" />
+      </div>
+      <div class="form-group">
+        <label for="cost">cost:</label>
+        <input class="form-input" type="number" id="hcost" name="cost" />
+      </div>
+      <div class="form-group">
+        <label for="landmarks">landmarks:</label>
+        <textarea class="form-input" id="hlandmarks" name="landmarks"></textarea>
+      </div>
+            <div class="form-group">
+        <label for="duration">duration:</label>
+        <input class="form-input" type="text" id="hduration" name="duration" />
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-secondary">Create</button>
+      </div>
+    </form>
+    </section>
+    </div>
+  </section>
+</main>
+
+
+<main class="container" id="entries">
+      <section class="row my-6">
         <div class="col-12 col-md-9">
           <section class="row justify-content-around">
   
@@ -58,7 +101,7 @@
 
                   </div>
                   <button class="btn btn-block btn-secondary" data-id="{{wishlist.id}}">delete</button>
-                  <button class="btn btn-block btn-secondary" data-id="{{wishlist.id}}">update</button>
+                  {{!-- <button class="btn btn-block btn-secondary" data-id="{{wishlist.id}}">update</button> --}}
                 </div>
                 {{/each}}
               </div>
@@ -82,38 +125,15 @@
                     Duration: {{history.duration}}
                   </p>
                   <button class="btn btn-block btn-info" data-id="{{history.id}}">delete</button>
-                  <button class="btn btn-block btn-info" data-id="{{history.id}}">update</button>
+                  {{!-- <button class="btn btn-block btn-info" data-id="{{history.id}}">update</button> --}}
                   {{/each}}
                 </div>
               </div>
             </div>
           </section>
         </div>
-        <div class="col-12 col-md-3">
-          <h2>share where you've been!</h2>
+</main>
 
-      <form class="form new-history-form">
-      <div class="form-group">
-        <label for="destination">destination:</label>
-        <input class="form-input" type="text" id="destination" name="destination" />
-      </div>
-      <div class="form-group">
-        <label for="cost">cost:</label>
-        <input class="form-input" type="number" id="cost" name="budget" />
-      </div>
-      <div class="form-group">
-        <label for="landmarks">landmarks:</label>
-        <textarea class="form-input" id="landmarks" name="landmarks"></textarea>
-      </div>
-            <div class="form-group">
-        <label for="duration">duration:</label>
-        <input class="form-input" type="text" id="duration" name="duration" />
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-secondary">Create</button>
-      </div>
-    </form>
-  </div>
 
 
 
