@@ -19,3 +19,20 @@ a {
     height: 8px;
 }
 
+#welc {
+    padding-bottom: 4rem;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#subs {
+    padding-bottom: 2rem;
+}
+
+#entries {
+    padding-top: 2rem;    
+}
