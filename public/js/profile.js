@@ -43,12 +43,33 @@ const newFormHandler = async (event) => {
       }
     }
   };
+
+  const wishDelButtonHandler = async (event) => {
+    if (event.target.hasAttribute('data-id')) {
+      const id = event.target.getAttribute('data-id');
+      // TODO: /history{history.id}???
+      const response = await fetch(`/api/wishlist/${id}`, {
+        method: 'DELETE',
+      });
+  
+      if (response.ok) {
+        document.location.replace('/');
+      } else {
+        alert('Failed to delete history');
+      }
+    }
+  };
+
   // TODO: connect to history/wishlist
   document
     .querySelector('.new-history-form')
     .addEventListener('submit', newFormHandler);
   
-  // document
-  //   .querySelector('.history-list')
-  //   .addEventListener('submit', delButtonHandler);
+  document
+    .querySelector('.history-card')
+    .addEventListener('click', delButtonHandler);
+
+  document
+    .querySelector('.wishlist-card')
+    .addEventListener('click', wishDelButtonHandler);      
   
